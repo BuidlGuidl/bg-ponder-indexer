@@ -9,6 +9,7 @@ export default createSchema((p) => ({
     id: p.string(),
     amount: p.float(),
     cohortContractAddress: p.bytes(),
+    timestamp: p.bigint(),
     ens: p.string().optional(),
   }),
   CohortWithdrawal: p.createTable({

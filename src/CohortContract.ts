@@ -10,10 +10,12 @@ ponder.on("CohortContract:AddBuilder", async ({ event, context }) => {
     create: {
       amount: parseFloat(formatEther(event.args.amount)),
       cohortContractAddress: event.log.address,
+      timestamp: event.block.timestamp,
       // ToDo. ens (context.client is a viem client, but doesn't expose getENSName)
     },
     update: {
       amount: parseFloat(formatEther(event.args.amount)),
+      timestamp: event.block.timestamp,
     },
   });
 });

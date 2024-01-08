@@ -1,6 +1,5 @@
 # BG Indexer (powered by Ponder)
 
-
 ## Setup
 
 1. Clone
