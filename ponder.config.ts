@@ -42,7 +42,7 @@ const optimismCohorts = [
 export default createConfig({
   networks: {
     mainnet: { chainId: 1, transport: http(process.env.PONDER_RPC_MAINNET) },
-    optimism: { chainId: 1, transport: http(process.env.PONDER_RPC_OPTIMISM) },
+    optimism: { chainId: 10, transport: http(process.env.PONDER_RPC_OPTIMISM) },
   },
   contracts: {
     CohortContract: {
