@@ -36,7 +36,9 @@ const optimismCohorts = [
   // 0xAfro
   "0x3DDb71FB2b6Fb530615FC1dEb9461d6489EDA1ff",
   // Play full
-  "0x3E920e4a1C26a9c6488c3E5c7CB1e91a179927F5"
+  "0x3E920e4a1C26a9c6488c3E5c7CB1e91a179927F5",
+  // Mercs
+  "0x8d84f7E545F69746e4A1CAD0F7ac9A83CCDF2C65"
 ] as `0x${string}`[];
 
 export default createConfig({
