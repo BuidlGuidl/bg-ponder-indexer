@@ -1,6 +1,10 @@
 # BG Indexer (powered by Ponder)
 
-## Setup
+This indexer is fetching all the events happening on BG Cohorts contracts.
+
+If you create a new cohort and want to index its events, just make a PR adding the cohort address to [ponder.config.ts](https://github.com/BuidlGuidl/bg-ponder-indexer/blob/main/ponder.config.ts)
+
+## Dev Setup
 
 1. Clone
 2. `npm install`
