@@ -40,13 +40,23 @@ const optimismCohorts = [
   // Mercs
   "0x8d84f7E545F69746e4A1CAD0F7ac9A83CCDF2C65",
   // Ship Yard
-  "0x55Cb9CB337CDb0A41cAc89Ffac4627744b50B566"
+  "0x55Cb9CB337CDb0A41cAc89Ffac4627744b50B566",
+  // Media
+  "0xa6EfA453c25658F725590A5821Cf408818f25FEf",
 ] as `0x${string}`[];
 
 export default createConfig({
   networks: {
-    mainnet: { chainId: 1, transport: http(process.env.PONDER_RPC_MAINNET), pollingInterval: 15_000 },
-    optimism: { chainId: 10, transport: http(process.env.PONDER_RPC_OPTIMISM), pollingInterval: 15_000 },
+    mainnet: {
+      chainId: 1,
+      transport: http(process.env.PONDER_RPC_MAINNET),
+      pollingInterval: 15_000,
+    },
+    optimism: {
+      chainId: 10,
+      transport: http(process.env.PONDER_RPC_OPTIMISM),
+      pollingInterval: 15_000,
+    },
   },
   contracts: {
     CohortContract: {
@@ -55,12 +65,12 @@ export default createConfig({
         mainnet: {
           // This can be multiple addresses []
           address: mainnetCohorts,
-          startBlock: 16992407
+          startBlock: 16992407,
         },
         optimism: {
           address: optimismCohorts,
-          startBlock: 101114639
-        }
+          startBlock: 101114639,
+        },
       },
     },
   },
