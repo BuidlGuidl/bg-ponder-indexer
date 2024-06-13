@@ -24,6 +24,6 @@
     "better-sqlite3"
   ],
   "engines": {
-    "node": ">=18"
+    "node": ">=18 <22.0.0"
   }
 }
