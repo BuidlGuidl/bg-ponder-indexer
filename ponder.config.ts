@@ -24,6 +24,8 @@ const mainnetCohorts = [
   "0xF32409271BE1Bb02F15922A6EA38BE79E664a247",
   // Not Just Notfellows
   "0xaCc9Cc4983D57cea0748B8CD1Adb87Ada5b1a67c",
+  // Media
+  "0xa6EfA453c25658F725590A5821Cf408818f25FEf",
 ] as `0x${string}`[];
 
 const optimismCohorts = [
@@ -41,8 +43,6 @@ const optimismCohorts = [
   "0x8d84f7E545F69746e4A1CAD0F7ac9A83CCDF2C65",
   // Ship Yard
   "0x55Cb9CB337CDb0A41cAc89Ffac4627744b50B566",
-  // Media
-  "0xa6EfA453c25658F725590A5821Cf408818f25FEf",
 ] as `0x${string}`[];
 
 export default createConfig({
