@@ -26,6 +26,19 @@ const mainnetCohorts = [
   "0xaCc9Cc4983D57cea0748B8CD1Adb87Ada5b1a67c",
   // Media
   "0xa6EfA453c25658F725590A5821Cf408818f25FEf",
+  // Owners
+  "0xd0acE9462d957485904B3437D4818ee2f9F2EfED",
+  // NiftyInk
+  "0x882d6aB20cE8Af9cB32e6eE3dc85f090427BCD1a",
+  // Nodes
+  "0x77A01eA7050B71067E6EB78Cd78aad34A39A3899",
+  // Batches
+  "0xe98994c7e30A7F0A108FF3BF20773CD521494a5a",
+  // Workshops
+  "0x1497f3831918e5220573ca6cdee15F16B2dBB063",
+  // Mercs
+  "0x1c873c172662c3774D089aB967911bC32C04bb08",
+
 ] as `0x${string}`[];
 
 const optimismCohorts = [
