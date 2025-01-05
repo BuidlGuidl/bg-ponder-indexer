@@ -1,4 +1,4 @@
-import { createConfig } from "@ponder/core";
+import { createConfig } from "ponder";
 import { http } from "viem";
 
 import { CohortContractAbi } from "./abis/CohortContractAbi";
@@ -38,7 +38,6 @@ const mainnetCohorts = [
   "0x1497f3831918e5220573ca6cdee15F16B2dBB063",
   // Mercs
   "0x1c873c172662c3774D089aB967911bC32C04bb08",
-
 ] as `0x${string}`[];
 
 const optimismCohorts = [
@@ -76,7 +75,6 @@ export default createConfig({
       abi: CohortContractAbi,
       network: {
         mainnet: {
-          // This can be multiple addresses []
           address: mainnetCohorts,
           startBlock: 16992407,
         },
