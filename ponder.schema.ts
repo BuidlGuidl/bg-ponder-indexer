@@ -1,23 +1,30 @@
-import { createSchema } from "@ponder/core";
+import { onchainTable, index } from "ponder";
 
-// Keeping the schema simple for now. We could have relationships as:
-// - new Cohort table with Cohort info (name, balance, totalWithdrawn, url, etc)
-// - new Builder table with Builder info (ens, etc)
-// - many-to-many relationship between Cohort and Builder (as CohortBuilder)
-export default createSchema((p) => ({
-  CohortBuilder: p.createTable({
-    id: p.string(),
-    amount: p.float(),
-    cohortContractAddress: p.bytes(),
-    timestamp: p.bigint(),
-    ens: p.string().optional(),
+export const cohortBuilder = onchainTable(
+  "cohort_builder",
+  (t) => ({
+    id: t.text().primaryKey(),
+    amount: t.real().notNull(),
+    cohortContractAddress: t.hex().notNull(),
+    timestamp: t.bigint().notNull(),
+    ens: t.text(),
   }),
-  CohortWithdrawal: p.createTable({
-    id: p.string(),
-    builder: p.bytes(),
-    amount: p.float(),
-    cohortContractAddress: p.bytes(),
-    reason: p.string(),
-    timestamp: p.bigint(),
+  (table) => ({
+    cohortAddressIdx: index().on(table.cohortContractAddress),
   }),
-}));
+);
+
+export const cohortWithdrawal = onchainTable(
+  "cohort_withdrawal",
+  (t) => ({
+    id: t.text().primaryKey(),
+    builder: t.hex().notNull(),
+    amount: t.real().notNull(),
+    cohortContractAddress: t.hex().notNull(),
+    reason: t.text().notNull(),
+    timestamp: t.bigint().notNull(),
+  }),
+  (table) => ({
+    cohortAddressIdx: index().on(table.cohortContractAddress),
+  }),
+);
