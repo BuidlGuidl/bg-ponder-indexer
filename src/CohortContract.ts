@@ -30,7 +30,7 @@ ponder.on("CohortContract:UpdateBuilder", async ({ event, context }) => {
 
 ponder.on("CohortContract:Withdraw", async ({ event, context }) => {
   await context.db.insert(cohortWithdrawal).values({
-    id: `${event.args.to}-${event.log.address}-${event.block.number}`,
+    id: event.log.id,
     builder: event.args.to,
     amount: parseFloat(formatEther(event.args.amount)),
     cohortContractAddress: event.log.address,
