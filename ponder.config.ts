@@ -31,7 +31,7 @@ const mainnetCohorts = [
   // NiftyInk
   "0x882d6aB20cE8Af9cB32e6eE3dc85f090427BCD1a",
   // Nodes
-  "0x77A01eA7050B71067E6EB78Cd78aad34A39A3899",
+  "0x24f0aec2e06c25c60f54e37870ca555b2d9ba609",
   // Batches
   "0xe98994c7e30A7F0A108FF3BF20773CD521494a5a",
   // Workshops
