@@ -1,8 +1,25 @@
 import { ponder } from "ponder:registry";
-import { formatEther } from "viem";
+import { formatEther, createPublicClient, http } from "viem";
+import { mainnet } from "viem/chains";
 import { cohortBuilder, cohortWithdrawal } from "ponder:schema";
 
+// Create a viem client for the mainnet
+const clientMainnet = createPublicClient({
+  chain: mainnet,
+  transport: http(process.env.PONDER_RPC_MAINNET),
+});
+
 ponder.on("CohortContract:AddBuilder", async ({ event, context }) => {
+  let ensName = null;
+
+  try {
+    ensName = await clientMainnet.getEnsName({
+      address: event.args.to,
+    });
+  } catch (e) {
+    console.error("Error resolving ENS name: ", e);
+  }
+
   await context.db
     .insert(cohortBuilder)
     .values({
@@ -10,9 +27,7 @@ ponder.on("CohortContract:AddBuilder", async ({ event, context }) => {
       amount: parseFloat(formatEther(event.args.amount)),
       cohortContractAddress: event.log.address,
       timestamp: event.block.timestamp,
-      // TODO: Add ENS lookup: ChainDoesNotSupportContract: Chain "mainnet" does not support contract "ensUniversalResolver".
-      //  The contract "ensUniversalResolver" was not deployed until block 19258213 (current block 16992408)
-      // ens: enstName,
+      ens: ensName,
     })
     .onConflictDoUpdate(() => ({
       amount: parseFloat(formatEther(event.args.amount)),
