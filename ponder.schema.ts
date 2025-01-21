@@ -1,4 +1,19 @@
-import { onchainTable, index } from "ponder";
+import { onchainTable, index, relations } from "ponder";
+
+export const cohortInformation = onchainTable(
+  "cohort_information",
+  (t) => ({
+    address: t.hex().primaryKey(),
+    name: t.text().notNull(),
+    url: t.text().notNull(),
+    balance: t.bigint().notNull(),
+  }),
+);
+
+export const cohortRelations = relations(cohortInformation, ({ many }) => ({
+  builders: many(cohortBuilder),
+  withdrawals: many(cohortWithdrawal),
+}));
 
 export const cohortBuilder = onchainTable(
   "cohort_builder",
@@ -14,6 +29,10 @@ export const cohortBuilder = onchainTable(
   }),
 );
 
+export const buildersRelations = relations(cohortBuilder, ({ one }) => ({
+  cohort: one(cohortInformation, { fields: [cohortBuilder.cohortContractAddress], references: [cohortInformation.address] }),
+}));
+
 export const cohortWithdrawal = onchainTable(
   "cohort_withdrawal",
   (t) => ({
@@ -28,3 +47,7 @@ export const cohortWithdrawal = onchainTable(
     cohortAddressIdx: index().on(table.cohortContractAddress),
   }),
 );
+
+export const withdrawalsRelations = relations(cohortWithdrawal, ({ one }) => ({
+  cohort: one(cohortInformation, { fields: [cohortWithdrawal.cohortContractAddress], references: [cohortInformation.address] }),
+}));
