@@ -4,8 +4,8 @@ export const cohortInformation = onchainTable(
   "cohort_information",
   (t) => ({
     address: t.hex().primaryKey(),
-    name: t.text().notNull(),
-    url: t.text().notNull(),
+    name: t.text(),
+    url: t.text(),
     balance: t.bigint().notNull(),
   }),
 );

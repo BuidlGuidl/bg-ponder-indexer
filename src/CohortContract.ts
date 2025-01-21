@@ -1,7 +1,7 @@
 import { ponder } from "ponder:registry";
 import { formatEther, createPublicClient, http } from "viem";
 import { mainnet } from "viem/chains";
-import { cohortBuilder, cohortWithdrawal } from "ponder:schema";
+import { cohortBuilder, cohortWithdrawal, cohortInformation } from "ponder:schema";
 
 // Create a viem client for the mainnet
 const clientMainnet = createPublicClient({
@@ -44,12 +44,26 @@ ponder.on("CohortContract:UpdateBuilder", async ({ event, context }) => {
 });
 
 ponder.on("CohortContract:Withdraw", async ({ event, context }) => {
+  const cohortContractAddress = event.log.address;
+
   await context.db.insert(cohortWithdrawal).values({
     id: event.log.id,
     builder: event.args.to,
     amount: parseFloat(formatEther(event.args.amount)),
-    cohortContractAddress: event.log.address,
+    cohortContractAddress,
     reason: event.args.reason,
     timestamp: event.block.timestamp,
   });
+
+  const balance = await context.client.getBalance({ address: cohortContractAddress });
+
+  await context.db
+    .insert(cohortInformation)
+    .values({
+      address: cohortContractAddress,
+      balance,
+    })
+    .onConflictDoUpdate(() => ({
+      balance,
+    }));
 });
