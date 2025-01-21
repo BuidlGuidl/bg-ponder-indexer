@@ -16,6 +16,11 @@ ponder.on("CohortContract:AddBuilder", async ({ event, context }) => {
     ensName = await clientMainnet.getEnsName({
       address: event.args.to,
     });
+
+    // Handle cases where the ENS name is not found or is null
+    if (!ensName) {
+      console.warn(`ENS name not found for address: ${event.args.to}`);
+    }
   } catch (e) {
     console.error("Error resolving ENS name: ", e);
   }
@@ -27,7 +32,7 @@ ponder.on("CohortContract:AddBuilder", async ({ event, context }) => {
       amount: parseFloat(formatEther(event.args.amount)),
       cohortContractAddress: event.log.address,
       timestamp: event.block.timestamp,
-      ens: ensName,
+      ens: ensName, // Will be null if resolution fails
     })
     .onConflictDoUpdate(() => ({
       amount: parseFloat(formatEther(event.args.amount)),
