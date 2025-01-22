@@ -40,6 +40,7 @@ export const cohortWithdrawal = onchainTable(
   (t) => ({
     id: t.text().primaryKey(),
     builder: t.hex().notNull(),
+    cohortBuilder: t.text().notNull(),
     amount: t.real().notNull(),
     cohortContractAddress: t.hex().notNull(),
     reason: t.text().notNull(),
@@ -52,4 +53,5 @@ export const cohortWithdrawal = onchainTable(
 
 export const withdrawalsRelations = relations(cohortWithdrawal, ({ one }) => ({
   cohort: one(cohortInformation, { fields: [cohortWithdrawal.cohortContractAddress], references: [cohortInformation.address] }),
+  cohortBuilder: one(cohortBuilder, { fields: [cohortWithdrawal.cohortBuilder], references: [cohortBuilder.id] }),
 }));
