@@ -67,7 +67,7 @@ mainnetCohorts.forEach((address) => {
   mainnetAccounts[address] = {
     network: "mainnet",
     address,
-    // 2024-01-22 block, we don't need to index before that because the balance is get on withdrawal too
+    // 2024-01-22 block, we don't need to index before that because the cohort balance is updated on withdrawal too
     startBlock: 21680352,
   };
 });
@@ -78,7 +78,7 @@ optimismCohorts.forEach((address) => {
   optimismAccounts[address] = {
     network: "optimism",
     address,
-    // 2024-01-22 block, we don't need to index before that because the balance is get on withdrawal too
+    // 2024-01-22 block, we don't need to index before that because the cohort balance is updated on withdrawal too
     startBlock: 130976020,
   };
 });
