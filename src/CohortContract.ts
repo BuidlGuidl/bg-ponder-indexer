@@ -24,6 +24,7 @@ ponder.on("CohortContract:AddBuilder", async ({ event, context }) => {
     .insert(cohortBuilder)
     .values({
       id: `${event.args.to}-${event.log.address}`,
+      address: event.args.to,
       amount: parseFloat(formatEther(event.args.amount)),
       cohortContractAddress: event.log.address,
       timestamp: event.block.timestamp,

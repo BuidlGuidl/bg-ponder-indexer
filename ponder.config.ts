@@ -55,6 +55,36 @@ const optimismCohorts = [
   "0x55Cb9CB337CDb0A41cAc89Ffac4627744b50B566",
 ] as `0x${string}`[];
 
+type accountType = {
+  network: "mainnet" | "optimism",
+  address: `0x${string}`,
+  startBlock: number,
+};
+
+const mainnetAccounts: Record<string, accountType> = {};
+
+mainnetCohorts.forEach((address) => {
+  mainnetAccounts[address] = {
+    network: "mainnet",
+    address,
+    // 2024-01-22 block, we don't need to index before that because the balance is get on withdrawal too
+    startBlock: 21680352,
+  };
+});
+
+const optimismAccounts: Record<string, accountType> = {};
+
+optimismCohorts.forEach((address) => {
+  optimismAccounts[address] = {
+    network: "optimism",
+    address,
+    // 2024-01-22 block, we don't need to index before that because the balance is get on withdrawal too
+    startBlock: 130976020,
+  };
+});
+
+const accounts = { ...mainnetAccounts, ...optimismAccounts };
+
 export default createConfig({
   networks: {
     mainnet: {
@@ -83,4 +113,5 @@ export default createConfig({
       },
     },
   },
+  accounts,
 });

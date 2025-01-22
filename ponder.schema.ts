@@ -4,6 +4,7 @@ export const cohortInformation = onchainTable(
   "cohort_information",
   (t) => ({
     address: t.hex().primaryKey(),
+    network: t.text(),
     name: t.text(),
     url: t.text(),
     balance: t.bigint().notNull(),
@@ -19,6 +20,7 @@ export const cohortBuilder = onchainTable(
   "cohort_builder",
   (t) => ({
     id: t.text().primaryKey(),
+    address: t.hex().notNull(),
     amount: t.real().notNull(),
     cohortContractAddress: t.hex().notNull(),
     timestamp: t.bigint().notNull(),
