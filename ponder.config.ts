@@ -90,12 +90,12 @@ export default createConfig({
     mainnet: {
       chainId: 1,
       transport: http(process.env.PONDER_RPC_MAINNET),
-      pollingInterval: 60_000,
+      pollingInterval: 12_000,
     },
     optimism: {
       chainId: 10,
       transport: http(process.env.PONDER_RPC_OPTIMISM),
-      pollingInterval: 180_000,
+      pollingInterval: 2_000,
     },
   },
   contracts: {
