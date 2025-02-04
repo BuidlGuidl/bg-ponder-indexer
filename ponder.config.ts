@@ -35,7 +35,7 @@ const mainnetCohorts = [
   // Batches
   "0x5C2584671d4a43C67B92D8a053B16546A1162B3b",
   // Workshops
-  "0x1497f3831918e5220573ca6cdee15F16B2dBB063",
+  "0x825078aB3d66b91B66D4b907a4742019Ca4Fdf30",
   // Mercs
   "0x1c873c172662c3774D089aB967911bC32C04bb08",
 ] as `0x${string}`[];
