@@ -1,37 +1,22 @@
 import { ponder } from "ponder:registry";
 import { cohortInformation } from "ponder:schema";
-import { mainnetCohorts, optimismCohorts } from "../ponder.config";
+import { cohorts } from "../ponder.config";
 
-ponder.on("CohortContractsBalanceUpdate:block", async ({ event, context }) => {
-  let cohorts;
+ponder.on("CohortContractsBalanceUpdate:block", async ({ event: _event, context }) => {
+  const filteredCohorts = cohorts.filter((cohort) => cohort.chainId === context.network.chainId);
 
-  if (context.network.name === "optimism") {
-    cohorts = optimismCohorts;
-  } else {
-    cohorts = mainnetCohorts;
-  }
-
-  for (let i = 0; i < cohorts.length; i++) {
-    const address = (cohorts[i] as string).toLowerCase() as `0x${string}`;
+  for (let i = 0; i < filteredCohorts.length; i++) {
+    const address = (filteredCohorts[i]?.address as string).toLowerCase() as `0x${string}`;
     const balance = await context.client.getBalance({ address });
 
     const cohort = await context.db.find(cohortInformation, { address: address });
 
-    if (!cohort) {
+    if (cohort && cohort.balance !== balance) {
       await context.db
-        .insert(cohortInformation)
-        .values({
-          address,
+        .update(cohortInformation, { address: address })
+        .set({
           balance,
         });
-    } else {
-      if (cohort.balance !== balance) {
-        await context.db
-          .update(cohortInformation, { address: address })
-          .set({
-            balance,
-          });
-      }
     }
   }
 });
