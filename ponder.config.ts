@@ -173,13 +173,13 @@ export default createConfig({
     CohortContractsBalanceUpdate: {
       network: {
         mainnet: {
-          // 2024-02-13 block, we don't need to index before that because the cohort balance is updated on withdrawal too
-          startBlock: 21838984,
+          // 2024-02-14 block, we don't need to index before that because the cohort balance is updated on withdrawal too
+          startBlock: 21846294,
           interval: 60 / 12, // Every hour
         },
         optimism: {
-          // 2024-02-13 block, we don't need to index before that because the cohort balance is updated on withdrawal too
-          startBlock: 131934090,
+          // 2024-02-14 block, we don't need to index before that because the cohort balance is updated on withdrawal too
+          startBlock: 131978309,
           interval: 60 / 2, // Every hour
         },
       },
