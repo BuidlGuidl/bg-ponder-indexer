@@ -165,7 +165,7 @@ export default createConfig({
         optimism: {
           address: optimismCohorts,
           startBlock: 101114639,
-          endBlock: 151240163,          ,
+          endBlock: 151240163,
         },
       },
     },
