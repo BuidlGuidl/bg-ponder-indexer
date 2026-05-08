@@ -165,6 +165,7 @@ export default createConfig({
         optimism: {
           address: optimismCohorts,
           startBlock: 101114639,
+          endBlock: 151240163,          ,
         },
       },
     },
@@ -180,6 +181,7 @@ export default createConfig({
         optimism: {
           // 2024-02-14 block, we don't need to index before that because the cohort balance is updated on withdrawal too
           startBlock: 131978309,
+          endBlock: 151240163,
           interval: 60 / 2, // Every hour
         },
       },
